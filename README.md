@@ -2,6 +2,10 @@
 
 A streamlined macOS development environment setup with tiling window management and modern tools.
 
+## 📸 Showcase
+
+![macOS Ricing Setup](https://raw.githubusercontent.com/Ermag/dotfiles/refs/heads/main/showcase.png)
+
 ## 🚀 Quick Start
 
 ```bash
