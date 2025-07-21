@@ -1,6 +1,6 @@
-# 🍎 macOS Ricing Setup
+# 🌌 VoidSpace
 
-A streamlined macOS development environment setup with tiling window management and modern tools.
+A minimalistic macOS development environment focused on distraction-free coding. Single fullscreen windows, keyboard-driven navigation, and clean aesthetics.
 
 ## 📸 Showcase
 
