@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# Available fonts: SF Pro, Hack Nerd Font, sketchybar-app
+
+source "$HOME/.config/sketchybar/colors.sh"   # Loads all defined colors
+source "$HOME/.config/sketchybar/icons.sh"    # Loads all defined icons
+source "$HOME/.config/sketchybar/settings.sh" # Loads all configuration settings
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+ITEM_DIR="$CONFIG_DIR/items"
+
+# Setting up the general bar appearance of the bar
+bar=(
+  height=42
+  color=$BAR_COLOR
+  shadow=on
+  position=top
+  sticky=on
+  padding_right=12
+  padding_left=12
+  corner_radius=0
+  y_offset=0
+  margin=0
+  blur_radius=0
+  notch_width=0
+)
+
+sketchybar --bar "${bar[@]}"
+
+# Default values for all items
+default=(
+  padding_left=5
+  padding_right=5
+  icon.font="SF Pro:Medium:16.0"
+  label.font="Space Grotesk:Semibold:15.0"
+  icon.color=$MAIN_TEXT_COLOR
+  label.color=$MAIN_TEXT_COLOR
+  icon.padding_left=10
+  icon.padding_right=10
+  label.padding_left=10
+  label.padding_right=10
+  background.corner_radius=8
+  background.height=30
+  background.color=$MAIN_BG_COLOR
+)
+sketchybar --default "${default[@]}"
+
+### Left items
+# Caffeinate button - prevents display sleep when active
+source "$ITEM_DIR/caffeinate.sh"
+# Front app display - shows current focused application
+source "$ITEM_DIR/front_app.sh"
+
+### Right items
+# Clock - updates every 10 seconds
+source "$ITEM_DIR/clock.sh"
+# Volume - responds to system volume changes
+source "$ITEM_DIR/volume.sh"
+# Currently playing media
+source "$ITEM_DIR/media.sh"
+# Battery - updates every 2 minutes and on power events (only if battery present)
+source "$ITEM_DIR/battery.sh"
+
+##### Force all scripts to run the first time (never do this in a script) #####
+sketchybar --update
