@@ -3,7 +3,10 @@
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-yabai -m config top_padding 54
+# Notch display (32px offset)
+yabai -m config top_padding 22
+# Normal display
+# yabai -m config top_padding 54
 yabai -m config bottom_padding 12
 yabai -m config left_padding 12
 yabai -m config right_padding 12

@@ -1,51 +1,101 @@
 #!/bin/bash
 
-# Package definitions: package_name -> description
-declare -A PACKAGES=(
+# Package definitions using parallel arrays (compatible with bash 3.2+)
+PACKAGES=(
     # Web Browsers
-    ["--cask brave-browser"]="Brave Browser (Privacy-focused web browser)"
+    "--cask brave-browser"
     
     # Terminal & Shell Tools
-    ["--cask ghostty"]="Ghostty (Modern terminal emulator)"
-    ["fish"]="Fish Shell (User-friendly command-line shell)"
-    ["starship"]="Starship (Cross-shell prompt)"
-    ["neovim"]="Neovim (Modern Vim-based text editor)"
-    ["fastfetch"]="Fastfetch (System information tool)"
+    "--cask ghostty"
+    "fish"
+    "starship"
+    "neovim"
+    "fastfetch"
     
     # Fonts
-    ["--cask font-space-grotesk"]="Space Grotesk Font (Modern geometric typeface)"
-    ["--cask sf-symbols"]="SF Symbols (Apple's icon library)"
-    ["--cask font-hack-nerd-font"]="Hack Nerd Font (Monospace font with icons)"
-    ["--cask font-sketchybar-app-font"]="SketchyBar App Font (Icon font for SketchyBar)"
+    "--cask font-space-grotesk"
+    "--cask sf-symbols"
+    "--cask font-hack-nerd-font"
+    "--cask font-sketchybar-app-font"
     
     # Productivity Tools
-    ["--cask raycast"]="Raycast (Spotlight replacement with superpowers)"
+    "--cask raycast"
     
     # Window Manager
-    ["koekeishiya/formulae/yabai"]="yabai (Tiling window manager)"
+    "koekeishiya/formulae/yabai"
+    "FelixKratz/formulae/sketchybar"
     
     # Development Tools
-    ["--cask cursor"]="Cursor (AI-powered code editor)"
-    ["--cask insomnia"]="Insomnia (API testing tool)"
+    "--cask cursor"
+    "--cask insomnia"
     
     # Containerization
-    ["docker"]="Docker (Container platform)"
-    ["docker-compose"]="Docker Compose (Multi-container Docker applications)"
+    "docker"
+    "docker-compose"
     
     # Programming Languages & Runtimes
-    ["node"]="Node.js (JavaScript runtime)"
-    ["go"]="Go (Programming language)"
-    ["python"]="Python (Programming language)"
+    "node"
+    "go"
+    "python"
     
     # Security & Utilities
-    ["--cask 1password"]="1Password (Password manager)"
+    "--cask 1password"
     
     # Office Suite
-    ["--cask libreoffice"]="LibreOffice (Free office suite)"
+    "--cask libreoffice"
     
     # Productivity & Communication
-    ["--cask notion"]="Notion (All-in-one workspace)"
-    ["--cask slack"]="Slack (Team communication)"
+    "--cask notion"
+    "--cask slack"
+)
+
+# Package descriptions (parallel array)
+DESCRIPTIONS=(
+    # Web Browsers
+    "Brave Browser (Privacy-focused web browser)"
+    
+    # Terminal & Shell Tools
+    "Ghostty (Modern terminal emulator)"
+    "Fish Shell (User-friendly command-line shell)"
+    "Starship (Cross-shell prompt)"
+    "Neovim (Modern Vim-based text editor)"
+    "Fastfetch (System information tool)"
+    
+    # Fonts
+    "Space Grotesk Font (Modern geometric typeface)"
+    "SF Symbols (Apple's icon library)"
+    "Hack Nerd Font (Monospace font with icons)"
+    "SketchyBar App Font (Icon font for SketchyBar)"
+    
+    # Productivity Tools
+    "Raycast (Spotlight replacement with superpowers)"
+    
+    # Window Manager
+    "yabai (Tiling window manager)"
+    "SketchyBar (Highly customizable macOS status bar)"
+    
+    # Development Tools
+    "Cursor (AI-powered code editor)"
+    "Insomnia (API testing tool)"
+    
+    # Containerization
+    "Docker (Container platform)"
+    "Docker Compose (Multi-container Docker applications)"
+    
+    # Programming Languages & Runtimes
+    "Node.js (JavaScript runtime)"
+    "Go (Programming language)"
+    "Python (Programming language)"
+    
+    # Security & Utilities
+    "1Password (Password manager)"
+    
+    # Office Suite
+    "LibreOffice (Free office suite)"
+    
+    # Productivity & Communication
+    "Notion (All-in-one workspace)"
+    "Slack (Team communication)"
 )
 
 # Check and install Homebrew if needed
@@ -60,9 +110,23 @@ brew update
 
 # Install all packages
 echo "Installing packages..."
-for package in "${!PACKAGES[@]}"; do
-    echo "Installing: ${PACKAGES[$package]}"
-    brew install "$package"
+echo "Found ${#PACKAGES[@]} packages to install..."
+
+# Install packages using array indices
+for i in "${!PACKAGES[@]}"; do
+    package="${PACKAGES[$i]}"
+    description="${DESCRIPTIONS[$i]}"
+    
+    echo ""
+    echo "📦 Installing: $package"
+    echo "   Description: $description"
+    
+    if brew install $package; then
+        echo "✅ Successfully installed: $package"
+    else
+        echo "❌ Failed to install: $package"
+        echo "   Continuing with next package..."
+    fi
 done
 
 echo "Done!"

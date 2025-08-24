@@ -146,30 +146,29 @@ if [[ "$OSTYPE" != "darwin"* ]]; then
     exit 1
 fi
 
-# Step 1: Install all Homebrew packages using the dedicated brew.sh script
-execute_script "Install all packages via Homebrew (brew.sh)" "brew.sh"
-
-# Step 2: Install development tools
-execute_step "Install Xcode Command Line Tools" "xcode-select --install" "true"
-
-# Step 3: Copy configuration files
-execute_step "Create ~/.config directory if it doesn't exist" "mkdir -p ~/.config" "true"
-execute_step "Copy configuration files to home directory" "cp -r .config/* ~/.config/" "true"
-
-# Step 4: Window manager configuration
+# Step 1: Window manager configuration
 manual_step "Disable System Integrity Protection (SIP) for yabai" "
 ⚠️  IMPORTANT: yabai requires SIP to be disabled for full functionality.
 To disable SIP: https://github.com/koekeishiya/yabai/wiki/Disabling-System-Integrity-Protection
 
 Press Enter when you're ready to continue with yabai configuration."
 
+# Step 2: Install all Homebrew packages using the dedicated brew.sh script
+execute_script "Install all packages via Homebrew (brew.sh)" "brew.sh"
+
+# Step 3: Install development tools
+execute_step "Install Xcode Command Line Tools" "xcode-select --install" "true"
+
+# Step 4: Copy configuration files
+execute_step "Create ~/.config directory if it doesn't exist" "mkdir -p ~/.config" "true"
+execute_step "Copy configuration files to home directory" "cp -r .config/* ~/.config/" "true"
+
+# Step 5: Configure yabai sudoers (allows yabai to manage windows)
 execute_step "Configure yabai sudoers (allows yabai to manage windows)" "echo \"\$(whoami) ALL=(root) NOPASSWD: sha256:\$(shasum -a 256 \$(which yabai) | cut -d \" \" -f 1) \$(which yabai) --load-sa\" | sudo tee /private/etc/sudoers.d/yabai" "true"
-
 execute_step "Start yabai service" "yabai --start-service" "true"
-
 execute_step "Start sketchybar service" "brew services start sketchybar" "true"
 
-# Step 5: Configure Fish Shell (only if fish was installed successfully)
+# Step 6: Configure Fish Shell (only if fish was installed successfully)
 if command -v fish &> /dev/null; then
     execute_step "Add Fish to allowed shells" "echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells" "true"
     execute_step "Change default shell to Fish" "chsh -s /opt/homebrew/bin/fish" "true"
@@ -177,17 +176,8 @@ else
     print_warning "Fish shell not found, skipping shell configuration"
 fi
 
-# Step 6: macOS System Preferences
+# Step 7: macOS System Preferences
 execute_script "Configure macOS System Preferences (mac.sh)" "mac.sh"
-
-# Step 7: Configure Git (if not already configured)
-print_step "Configure Git settings"
-if ! git config --global user.name &> /dev/null; then
-    manual_step "Set up Git user name" "Run: git config --global user.name \"Your Name\""
-    manual_step "Set up Git user email" "Run: git config --global user.email \"your.email@example.com\""
-else
-    print_success "Git is already configured"
-fi
 
 # Step 8: Security settings
 manual_step "Configure security settings" "
@@ -198,11 +188,11 @@ manual_step "Configure security settings" "
 
 # Step 9: Configure installed applications
 manual_step "Configure newly installed applications" "
-- Set up 1Password and import your passwords
+- Set up 1Password
 - Import Raycast config file
-- Configure Brave Browser settings and extensions
+- Sync Brave Browser settings
 - Set up Cursor/VS Code with your preferred extensions
-- Configure Neovim: Set up your init.vim or init.lua configuration
+- Configure Git"
 
 # Completion message
 echo ""

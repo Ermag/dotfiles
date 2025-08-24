@@ -54,12 +54,12 @@ source "$ITEM_DIR/front_app.sh"
 ### Right items
 # Clock - updates every 10 seconds
 source "$ITEM_DIR/clock.sh"
+# Battery - updates every 2 minutes and on power events (only if battery present)
+source "$ITEM_DIR/battery.sh"
 # Volume - responds to system volume changes
 source "$ITEM_DIR/volume.sh"
 # Currently playing media
 source "$ITEM_DIR/media.sh"
-# Battery - updates every 2 minutes and on power events (only if battery present)
-source "$ITEM_DIR/battery.sh"
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
