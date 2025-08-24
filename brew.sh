@@ -30,8 +30,7 @@ PACKAGES=(
     "--cask insomnia"
     
     # Containerization
-    "docker"
-    "docker-compose"
+    "--cask docker"
     
     # Programming Languages & Runtimes
     "node"
