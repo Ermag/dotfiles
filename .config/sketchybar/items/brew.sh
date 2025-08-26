@@ -4,7 +4,7 @@
 brew_button=(
   script="$PLUGIN_DIR/brew.sh"
   click_script="$PLUGIN_DIR/brew_click.sh"
-  update_freq=60
+  update_freq=300
   padding_left=2
   icon.font="Hack Nerd Font:Bold:18.0"
   icon.color=$MAIN_BG_COLOR
