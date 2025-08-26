@@ -46,6 +46,8 @@ default=(
 sketchybar --default "${default[@]}"
 
 ### Left items
+# Brew packages - shows outdated homebrew packages
+source "$ITEM_DIR/brew.sh"
 # Caffeinate button - prevents display sleep when active
 source "$ITEM_DIR/caffeinate.sh"
 # Front app display - shows current focused application

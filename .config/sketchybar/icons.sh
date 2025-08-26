@@ -4,6 +4,20 @@
 export CAFFEINATE_ACTIVE_ICON="󰅶"
 export CAFFEINATE_INACTIVE_ICON="󰛊"
 
+# Brew packages icons
+export BREW_PACKAGE_0="󰎣"
+export BREW_PACKAGE_1="󰎦"
+export BREW_PACKAGE_2="󰎩"
+export BREW_PACKAGE_3="󰎬"
+export BREW_PACKAGE_4="󰎮"
+export BREW_PACKAGE_5="󰎰"
+export BREW_PACKAGE_6="󰎵"
+export BREW_PACKAGE_7="󰎸"
+export BREW_PACKAGE_8="󰎻"
+export BREW_PACKAGE_9="󰎾"
+export BREW_PACKAGE_9Plus="󰏁"
+export BREW_PACKAGE_UPDATING="󰜰"
+
 # Volume icons
 export VOLUME_75="􀊨"
 export VOLUME_50="􀊦"
