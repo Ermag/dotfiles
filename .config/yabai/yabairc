@@ -12,8 +12,6 @@ yabai -m config right_padding 12
 
 yabai -m config window_shadow off
 yabai -m config window_opacity off
-yabai -m config active_window_opacity 0.95
-yabai -m config normal_window_opacity 0.0
 
 yabai -m space 1 --layout stack
 
@@ -27,4 +25,3 @@ yabai -m signal --add event=window_created action="sketchybar --trigger windows_
 yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
 
 echo "yabai config loaded..."
-
