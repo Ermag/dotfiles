@@ -21,6 +21,9 @@ on sendCommand(theCommand)
   set commandOptions to current application'\''s NSDictionary'\''s alloc()'\''s init()
   set controller to MRNowPlayingController'\''s localRouteController()
   controller'\''s sendCommand:theCommand options:commandOptions completion:(missing value)
+  
+  -- Add a small delay to ensure the command processes properly
+  delay 0.1
 end sendCommand
 ' 2>/dev/null
 

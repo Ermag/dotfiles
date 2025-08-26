@@ -19,7 +19,7 @@ chmod +x ./setup.sh
 - **Browser:** Brave
 - **Terminal:** Ghostty + Fish shell + Starship prompt  
 - **Editor:** Cursor (AI-powered)
-- **Window Manager:** yabai + SketchyBar
+- **Window Manager:** yabai + SketchyBar (with custom items)
 - **Productivity:** Raycast, 1Password, Notion, Slack
 - **Development:** Node.js, Go, Python, Docker, Neovim
 - **Fonts:** Hack Nerd Font, Space Grotesk, SF Symbols
@@ -28,6 +28,15 @@ chmod +x ./setup.sh
 - Dark mode + left dock (auto-hide)
 - Custom keyboard shortcuts
 - Spotlight disabled (replaced by Raycast)
+
+### SketchyBar Custom Items
+- **Brew Status**: Visual count of outdated packages (0-9+), click to upgrade
+- **Caffeinate**: Toggle display sleep prevention  
+- **Front App**: Shows current application
+- **Media**: Current track with play/pause (auto-hide when stopped)
+- **Volume**: Visual volume level with click controls
+- **Battery**: Percentage with color-coded charge status (laptops only)
+- **Clock**: Date and time display
 
 ### Dotfiles
 - All configuration files in `.config/` directory
